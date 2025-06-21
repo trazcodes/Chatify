@@ -2,11 +2,11 @@ import express from "express";
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import authRoutes from './routes/auth.route.js';
-import messageRoutes from './routes/message.route.js';
-import { connectDB } from '../lib/db.js';
+import authRoutes from './src/routes/auth.route.js';
+import messageRoutes from './src/routes/message.route.js';
+import { connectDB } from './lib/db.js';
 import cookieParser from 'cookie-parser';
-import { app, server } from "../lib/socket.js";
+import { app, server } from "./lib/socket.js";
 import path from "path";
 
 dotenv.config();
