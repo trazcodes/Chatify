@@ -2,11 +2,11 @@ import express from "express";
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import authRoutes from './src/routes/auth.route.js';
-import messageRoutes from './src/routes/message.route.js';
-import { connectDB } from './lib/db.js';
+import authRoutes from './routes/auth.route.js';
+import messageRoutes from './routes/message.route.js';
+import { connectDB } from '../lib/db.js';
 import cookieParser from 'cookie-parser';
-import { app, server } from "./lib/socket.js";
+import { app, server } from "../lib/socket.js";
 import path from "path";
 
 dotenv.config();
@@ -33,10 +33,10 @@ app.use('/api/messages', messageRoutes);
 const PORT = process.env.PORT || 5000;
 
 if(process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../../client/dist')));
+    app.use(express.static(path.join(__dirname, '../client/dist')));
     
-app.get(/^\/(?!api).*/, (req, res) => {
-        res.sendFile(path.join(__dirname, '../../client','dist','index.html'));
+app.get("*", (req, res) => {
+        res.sendFile(path.join(__dirname, '../client','dist','index.html'));
     });
 }
 const startServer = async () => {
